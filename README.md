@@ -32,8 +32,8 @@ node -v
 
 npm -v
 
-#### 1.2. Instalar todos os pacotes importantes
-Dentro das pastas do servidor e do cliente:
+#### 1.2. Dentro do repositório do projeto instalar todos os pacotes importantes
+Dentro dos repositórios do servidor (backend) e do cliente (chatbot):
 
 `npm install`
 
