@@ -1,0 +1,114 @@
+.chat {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-bottom: 60px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top: 10px;
+  height: 100%;
+  width: 100%;  
+  overflow-y: auto; 
+  margin: 0;
+}
+
+.chat::-webkit-scrollbar {
+  width: 8px;
+}
+
+.chat::-webkit-scrollbar-thumb {
+  background-color: rgba(255,255,255,0.5);
+  border-radius: 3px;
+}
+
+.message {
+  display: flex;
+  flex-direction: column;
+  max-width: 85%;
+}
+
+.message.user {
+  align-self: flex-end;
+  text-align: right;
+}
+
+.message.bot {
+  align-self: flex-start;
+}
+
+.bubble {
+  padding: 12px 16px;
+  border-radius: 18px;
+  font-size: 15px;
+  line-height: 1.4;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 0.2s ease-in-out;
+}
+
+.message.user .bubble {
+  background-color: #3880ff;
+  color: white;
+  border-bottom-right-radius: 4px;
+}
+
+.message.bot .bubble {
+  background-color: #f4f4f8;
+  color: #222;
+  border-bottom-left-radius: 4px;
+}
+
+/* Gráfico dentro do balão */
+.chart-bubble {
+  background-color: white !important;
+  border: 1px solid #e0e0e0;
+  padding: 10px;
+  border-radius: 16px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* garante que o conteúdo não fique escondido atrás do footer */
+ion-content {
+  --padding-start: 0;
+  --padding-end: 0;
+  --padding-top: 0px;
+  --padding-bottom: 50px;
+}
+
+.typing-bubble {
+  display: flex;
+  gap: 4px;
+  padding: 8px 12px;
+  background-color: #eee; /* mesma cor da bolha do bot */
+  border-radius: 16px;
+  width: 60px;
+}
+
+.typing-bubble span {
+  width: 8px;
+  height: 8px;
+  background-color: #555; /* cor das bolinhas */
+  border-radius: 50%;
+  display: inline-block;
+  animation: bounce 0.6s infinite alternate;
+}
+
+.typing-bubble span:nth-child(2) { animation-delay: 0.2s; }
+.typing-bubble span:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes bounce {
+  from { transform: translateY(0); opacity: 0.3; }
+  to { transform: translateY(-6px); opacity: 1; }
+}

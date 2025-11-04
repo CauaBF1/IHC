@@ -1,0 +1,42 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button menu="main"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Register</ion-title>
+    <ion-buttons slot="end">
+      <ion-button routerLink="/temporary-chat" fill="clear">
+        <ion-icon name="chatbubble-ellipses-outline" style="font-size: 22px;"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <form (ngSubmit)="onRegister()" [formGroup]="form">
+    <ion-item>
+      <ion-label position="floating">Usuário</ion-label>
+      <ion-input type="text" formControlName="username"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Senha</ion-label>
+      <ion-input type="password" formControlName="password"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Confirmar senha</ion-label>
+      <ion-input type="password" formControlName="confirmPassword"></ion-input>
+    </ion-item>
+
+    <ion-button expand="block" type="submit" [disabled]="form.invalid || loading">
+      {{ loading ? 'Criando conta...' : 'Cadastrar' }}
+    </ion-button>
+
+    <div class="link-container">
+      <a (click)="goToLogin()">Já tenho uma conta</a>
+    </div>
+  </form>
+
+</ion-content>

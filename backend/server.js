@@ -80,19 +80,6 @@ app.post('/chat', async (req, res) => {
   }
 });
 
-// async function listAvailableModels() {
-//   try {
-//     const result = await genAI.listModels();
-//     const models = result.models;
-//     console.log("Modelos disponíveis:");
-//     for (const m of models) {
-//       console.log(`  - ${m.name} (Supported methods: ${m.supportedGenerativeMethods.join(', ')})`);
-//     }
-//   } catch (error) {
-//     console.error("Erro ao listar modelos:", error);
-//   }
-// }
-
 app.post('/upload-csv', upload.single('file'), async (req, res) => {
   try {
     const filePath = req.file.path;
@@ -195,7 +182,7 @@ app.post('/chat-temp', async (req, res) => {
 
   try {
     // --- 1. Buscar histórico temporário ---
-    console.log("Buscando histórico temporário.......");
+   // console.log("Buscando histórico temporário.......");
     const history = tempChatHistory[sessionId] || [];
     const historyText = history
       .map(h => `Usuário: ${h.message}\nAssistente: ${h.response}`)

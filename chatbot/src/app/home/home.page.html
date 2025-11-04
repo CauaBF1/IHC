@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button menu="main"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Chat + Gemini</ion-title>
+    <ion-buttons slot="end">
+      <ion-button routerLink="/temporary-chat" fill="clear">
+        <ion-icon name="chatbubble-ellipses-outline" style="font-size: 22px;"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="center-container">
+    <ion-title class="welcome-text" size="large">Olá! Como você está?</ion-title>
+
+    <div class="buttons-container">
+      <ion-button expand="block" (click)="goToChat('chat')">Iniciar conversa</ion-button>
+      <ion-button expand="block" (click)="goToChat('sleep-chat')">Falar sobre insônia</ion-button>
+    </div>
+  </div>
+</ion-content>

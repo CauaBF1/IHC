@@ -2,9 +2,9 @@ import Database from 'better-sqlite3';
 
 const db = new Database('chatbot.db');
 
-db.prepare('DROP TABLE IF EXISTS user_csv_data').run();
-db.prepare('DROP TABLE IF EXISTS chat_history').run();
-db.prepare('DROP TABLE IF EXISTS user_profile').run();
+// db.prepare('DROP TABLE IF EXISTS user_csv_data').run();
+// db.prepare('DROP TABLE IF EXISTS chat_history').run();
+// db.prepare('DROP TABLE IF EXISTS user_profile').run();
 // Cria tabelas se não existirem
 db.prepare(`
   CREATE TABLE IF NOT EXISTS user_profile (

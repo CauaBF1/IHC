@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button menu="main"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Personal diary</ion-title>
+    <ion-buttons slot="end">
+      <ion-button routerLink="/temporary-chat" fill="clear">
+        <ion-icon name="chatbubble-ellipses-outline" style="font-size: 22px;"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-textarea
+    placeholder="Escreva aqui..."
+    [(ngModel)]="noteText"
+    rows="6">
+  </ion-textarea>
+
+  <ion-button expand="block" (click)="saveNote()">Salvar</ion-button>
+
+  <ion-list *ngIf="notes.length > 0">
+    <ion-item *ngFor="let note of notes">
+      <ion-label>
+        <p>{{ note.content }}</p>
+        <small>{{ note.created_at | date:'short' }}</small>
+      </ion-label>
+      <ion-button color="danger" fill="clear" (click)="deleteNote(note.id)">Excluir</ion-button>
+    </ion-item>
+  </ion-list>
+</ion-content>

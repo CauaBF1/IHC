@@ -1,0 +1,26 @@
+<ion-menu contentId="main-content" side="start" menuId="main">
+  <ion-header>
+    <ion-toolbar color="primary">
+      <ion-title>Menu</ion-title>
+      <ion-buttons slot="end">
+        <ion-button (click)="closeMenu()">
+          <ion-icon name="close"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content>
+    <ion-list>
+      <ion-item routerLink="/home"><ion-icon name="home-outline"  slot="start"></ion-icon>Home</ion-item>
+      <ion-item routerLink="/chat" *ngIf="isLoggedIn"><ion-icon name="chatbubbles-outline" slot="start"></ion-icon>Chat</ion-item>
+      <ion-item routerLink="/breathing"><ion-icon [src]="'../../assets/icon/meditation.svg'" slot="start"></ion-icon>Respiração</ion-item>
+      <ion-item routerLink="/sleep-chat" *ngIf="isLoggedIn"><ion-icon name="bed-outline" slot="start"></ion-icon>Chat Insônia</ion-item>
+      <ion-item routerLink="/personal-diary" *ngIf="isLoggedIn"><ion-icon [src]="'../../assets/icon/diary-journal.svg'" slot="start"></ion-icon>Diário Pessoal</ion-item>
+      <ion-item><ion-icon name="settings-outline" slot="start"></ion-icon> Configurações</ion-item>
+      <ion-item routerLink="/login" *ngIf="!isLoggedIn"><ion-icon name="enter-outline" slot="start"></ion-icon>Login</ion-item>
+      <ion-item button (click)="logout()" *ngIf="isLoggedIn"><ion-icon name="exit-outline" slot="start"></ion-icon>Sair</ion-item>
+
+    </ion-list>
+  </ion-content>
+</ion-menu>

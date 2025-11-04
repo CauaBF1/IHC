@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button menu="main"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Breathing</ion-title>
+    <ion-buttons slot="end">
+      <ion-button routerLink="/temporary-chat" fill="clear">
+        <ion-icon name="chatbubble-ellipses-outline" style="font-size: 22px;"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>  
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <!-- container centralizado -->
+    <div class="center-container">
+    <div class="pulse-circle" [class.paused]="!isAnimating">
+      <ion-button fill="clear" (click)="toggleAnimation()">
+        {{ isAnimating ? 'Pausar' : 'Iniciar' }}
+      </ion-button>
+    </div>
+  </div>
+</ion-content>

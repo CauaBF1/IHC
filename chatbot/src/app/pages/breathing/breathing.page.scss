@@ -1,0 +1,42 @@
+.center-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.pulse-circle {
+  width: 150px;
+  height: 150px;
+  background-color: #4ca0af;
+  border-radius: 50%;
+  display: flex; /* centraliza o botão dentro do círculo */
+  justify-content: center;
+  align-items: center;
+  animation: pulse 2s infinite ease-in-out;
+}
+.paused {
+  animation-play-state: paused;
+}
+
+ion-button {
+  --color: white;
+  --background: transparent;
+  font-weight: bold;
+}
+
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.3);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}

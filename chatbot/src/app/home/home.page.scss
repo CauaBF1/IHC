@@ -1,0 +1,25 @@
+.center-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 80%; /* centraliza verticalmente na tela */
+  text-align: center;
+}
+
+.welcome-text {
+  margin-bottom: 60px; /* espaço entre o texto e os botões */
+}
+
+.buttons-container {
+  display: flex;
+  flex-direction: row;
+  gap: 30px; /* espaço entre os botões */
+  width: 100%;
+  justify-content: center;
+  //max-width: 300px; /* opcional, limita a largura */
+}
+
+ion-content {
+  padding: 0;
+}

@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button menu="main"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Sleep chat</ion-title>
+    <ion-buttons slot="end">
+      <ion-button routerLink="/temporary-chat" fill="clear">
+        <ion-icon name="chatbubble-ellipses-outline" style="font-size: 22px;"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content class="ion-padding">
+  <div #chatContainer class="chat">
+    <div *ngFor="let m of messages" [ngClass]="['message', m.sender]">
+      <div *ngIf="!m.chart" class="bubble">
+        {{ m.text }}
+      </div>
+    </div>
+    <div *ngIf="isTyping" class="bubble bot typing-bubble">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+</ion-content>
+
+<ion-footer style="position: absolute; bottom: 0;">
+  <ion-item lines="none">
+    <ion-input [(ngModel)]="userMessage" placeholder="Digite sua mensagem" (keydown.enter)="sendMessage()">
+    </ion-input>
+    <ion-button (click)="sendMessage()">Enviar</ion-button>
+  </ion-item>
+</ion-footer>
