@@ -1,0 +1,88 @@
+.login-page {
+    --background: var(--gradient_bg, #FFF8F0);
+    width: 27.5rem;
+    height: 59.75rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-container {
+  width: 90%;
+  max-width: 380px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 1rem;
+}
+
+.header-section {
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+
+.logo {
+    width: 13.9375rem;
+    height: 6.6875rem;
+    flex-shrink: 0;
+    aspect-ratio: 223/107;
+}
+
+.mascote {
+  width: 13.44519rem;
+  height: 18.838rem;
+  transform: rotate(-42.667deg);
+  flex-shrink: 0;
+  aspect-ratio: 215.12/301.41;
+}
+
+.title {
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  font-size: 2rem;
+  color: #5a3e8e; /* lilás profundo */
+  text-align: left;
+  margin-top: 60px;
+}
+
+.input-item {
+  --background: transparent;
+    width: 23.625rem;
+    height: 3.25rem;
+    flex-shrink: 0;
+
+  ion-input {
+    border-radius: 0.625rem;
+    border: 1px solid var(--primary, #3B3355);
+    padding: 0.5rem;
+    font-size: 0.95rem;
+  }
+
+  ion-label {
+    color: #3e3e3e;
+    font-size: 0.9rem;
+  }
+}
+
+.login-button {
+  --background: #4b3b70; /* roxo escuro */
+  --border-radius: 10px;
+  margin-top: 20px;
+  box-shadow: 0 4px 10px rgba(75, 59, 112, 0.25);
+  font-weight: 500;
+}
+
+.links {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+
+  a {
+    color: #4b3b70;
+    font-size: 0.85rem;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

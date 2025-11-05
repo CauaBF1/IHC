@@ -1,37 +1,44 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-menu-button menu="main"></ion-menu-button>
-    </ion-buttons>
-    <ion-title>Login</ion-title>
-    <ion-buttons slot="end">
-      <ion-button routerLink="/temporary-chat" fill="clear">
-        <ion-icon name="chatbubble-ellipses-outline" style="font-size: 22px;"></ion-icon>
+
+<ion-content class="login-page">
+  <div class="login-container">
+    <!-- Mascote e título -->
+    <div class="header-section">
+      <img src="assets/imgs/logo.png" alt="Logo" class="logo" />
+      <img src="assets/imgs/mascote.png" alt="Mascote" class="mascote" />
+    </div>
+
+    <!-- Formulário -->
+    <form (ngSubmit)="login()">
+      <ion-item class="input-item">
+        <ion-label position="stacked">E-mail:</ion-label>
+        <ion-input
+          [(ngModel)]="username"
+          name="username"
+          type="email"
+          placeholder="email@dominio.com"
+          required>
+        </ion-input>
+      </ion-item>
+
+      <ion-item class="input-item">
+        <ion-label position="stacked">Senha:</ion-label>
+        <ion-input
+          [(ngModel)]="password"
+          name="password"
+          type="password"
+          placeholder="****************"
+          required>
+        </ion-input>
+      </ion-item>
+
+      <ion-button expand="block" type="submit" class="login-button">
+        Continuar
       </ion-button>
-    </ion-buttons>
-  </ion-toolbar>
-</ion-header>
 
-<ion-content class="ion-padding">
-  <form (ngSubmit)="login()">
-    <ion-item>
-      <ion-label position="floating">Usuário</ion-label>
-      <ion-input [(ngModel)]="username" name="username" required></ion-input>
-    </ion-item>
-
-    <ion-item>
-      <ion-label position="floating">Senha</ion-label>
-      <ion-input [(ngModel)]="password" name="password" type="password" required></ion-input>
-    </ion-item>
-
-    <ion-button expand="block" type="submit">Entrar</ion-button>
-
-    <ion-item lines="none">
-      <ion-label class="ion-text-center">ou</ion-label>
-    </ion-item>
-
-    <ion-button expand="block" fill="outline" routerLink="/register">
-      Cadastrar
-    </ion-button>
-  </form>
+      <div class="links">
+        <a routerLink="/forgot-password">Esqueceu a senha?</a>
+        <a routerLink="/register">Cadastrar</a>
+      </div>
+    </form>
+  </div>
 </ion-content>
