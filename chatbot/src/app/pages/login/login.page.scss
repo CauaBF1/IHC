@@ -1,88 +1,101 @@
-.login-page {
-    --background: var(--gradient_bg, #FFF8F0);
-    width: 27.5rem;
-    height: 59.75rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+body {
+  margin: 0;
+  font-family: "Inter", sans-serif;
+  background-color: #fff8f0;
+  color: #333;
 }
 
-.login-container {
-  width: 90%;
-  max-width: 380px;
+.container {
+  width: 100%;
+  max-width: 440px; /* típico mobile */
   margin: 0 auto;
-  text-align: center;
-  padding: 1rem;
+  padding: 16px;
 }
 
-.header-section {
-  position: relative;
-  margin-bottom: 1.5rem;
-}
-
-.logo {
-    width: 13.9375rem;
-    height: 6.6875rem;
-    flex-shrink: 0;
-    aspect-ratio: 223/107;
-}
-
-.mascote {
-  width: 13.44519rem;
-  height: 18.838rem;
-  transform: rotate(-42.667deg);
-  flex-shrink: 0;
-  aspect-ratio: 215.12/301.41;
-}
-
-.title {
-  font-family: "Poppins", sans-serif;
-  font-weight: 700;
-  font-size: 2rem;
-  color: #5a3e8e; /* lilás profundo */
-  text-align: left;
-  margin-top: 60px;
-}
-
-.input-item {
-  --background: transparent;
-    width: 23.625rem;
-    height: 3.25rem;
-    flex-shrink: 0;
-
-  ion-input {
-    border-radius: 0.625rem;
-    border: 1px solid var(--primary, #3B3355);
-    padding: 0.5rem;
-    font-size: 0.95rem;
-  }
-
-  ion-label {
-    color: #3e3e3e;
-    font-size: 0.9rem;
-  }
+#cabecalho {
+    justify-content: flex-start;
+  display: flex;
+  padding: 20px;
+  gap: 20px;
+  width: 100%;
+  align-items: center;
 }
 
 .login-button {
-  --background: #4b3b70; /* roxo escuro */
-  --border-radius: 10px;
-  margin-top: 20px;
-  box-shadow: 0 4px 10px rgba(75, 59, 112, 0.25);
+  border: none;
+  border-radius: 10px;
+  background: var(--primary, #3b3355);
+  color: #fff;
+  font-size: 16px;
   font-weight: 500;
+  width: 100%;
+  height: 52px;
+  text-decoration: none;
+  /* Centraliza horizontal e verticalmente o texto */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  line-height: 1; /* evita interferência do line-height padrão */
+  cursor: pointer;
+}
+
+label {
+  color: var(--text, #000505);
+font-family: Inter;
+font-size: 20px;
+font-style: normal;
+font-weight: 500;
+line-height: 140%; /* 28px */
+}
+
+input {
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 2px solid #c6b7cc;
+  font-size: 16px;
+  outline: none;
+  color: #AFAFAF; 
+  font-weight: 500;
+  line-height: 140%; /* 22.4px */
+  background-color: transparent;
+}
+
+input::placeholder {
+  color: #b3b3b3;
+}
+
+#linkSenha {
+  color: #000505;
+}
+
+
+.formularioLogin {
+  padding-top: 70px;
+  width: 90%;
+  max-width: 380px;
+  margin: 30px auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.logo {
+  width: 60%;       /* ocupa 60% da tela */
+  max-width: 200px; /* mas nunca passa disso */
+  margin: 0 auto;   /* centraliza */
+}
+.mascote {
+  width: 50%;
+  max-width: 180px;
+  margin: 20px auto;
+  transform: rotate(-42.667deg);
 }
 
 .links {
   display: flex;
   justify-content: space-between;
-  margin-top: 15px;
-
-  a {
-    color: #4b3b70;
-    font-size: 0.85rem;
-    text-decoration: none;
-
-    &:hover {
-      text-decoration: underline;
-    }
-  }
+  width: 100%;
+  color: #000505;
+  margin-top: 10px;
 }
+

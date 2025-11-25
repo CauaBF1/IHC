@@ -1,44 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Chat + Gemini</title>
+  <link rel="stylesheet" href="login.page.scss">
+</head>
+<body>
 
-<ion-content class="login-page">
-  <div class="login-container">
-    <!-- Mascote e título -->
-    <div class="header-section">
+  <div class="container">
+    <div id="cabecalho">
       <img src="assets/imgs/logo.png" alt="Logo" class="logo" />
       <img src="assets/imgs/mascote.png" alt="Mascote" class="mascote" />
     </div>
 
-    <!-- Formulário -->
-    <form (ngSubmit)="login()">
-      <ion-item class="input-item">
-        <ion-label position="stacked">E-mail:</ion-label>
-        <ion-input
-          [(ngModel)]="username"
-          name="username"
-          type="email"
-          placeholder="email@dominio.com"
-          required>
-        </ion-input>
-      </ion-item>
+    <form>
+      <div class="formularioLogin">
 
-      <ion-item class="input-item">
-        <ion-label position="stacked">Senha:</ion-label>
-        <ion-input
-          [(ngModel)]="password"
-          name="password"
-          type="password"
-          placeholder="****************"
-          required>
-        </ion-input>
-      </ion-item>
+        <label for="email">Email institucional:</label>
+        <input type="email" id="email" placeholder="email@dominio.com" required>
 
-      <ion-button expand="block" type="submit" class="login-button">
-        Continuar
-      </ion-button>
+        <label for="senha">Senha:</label>
+        <input type="password" id="senha" placeholder="****************" required>
 
-      <div class="links">
-        <a routerLink="/forgot-password">Esqueceu a senha?</a>
-        <a routerLink="/register">Cadastrar</a>
+        <br>
+        <!-- Use um link com routerLink para navegação SPA sem recarregar a página -->
+        <a routerLink="/chat" class="login-button">Continuar</a>
+        <br>
+        <div class="links">
+          <a id="linkSenha" routerLink="/esqueci-senha">Esqueceu a senha?</a>
+          <a id="linkSenha" routerLink="/register">Cadastrar</a>
+        </div>
       </div>
     </form>
   </div>
-</ion-content>
+</body>
+</html>

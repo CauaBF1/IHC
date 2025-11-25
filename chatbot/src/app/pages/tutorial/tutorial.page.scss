@@ -1,0 +1,77 @@
+body{
+    background-color: #fff8f0;
+    font-family: "Inter", sans-serif;
+}
+
+.container {
+  width: 100%;
+  max-width: 420px; /* típico mobile */
+  margin: 0 auto;
+  padding: 16px;
+}
+
+#cabecalho {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* botão à esquerda, logo + mascote à direita */
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+#menuButton {
+    background: none;
+    border: none;
+    font-size: 26px;
+    cursor: pointer;
+    padding: 6px 10px;
+}
+
+#estiloLogoCadastro {
+    width: 55px;
+}
+
+#estiloMascoteCadastro {
+    width: 35px;
+    transform: rotate(-30deg);
+}
+
+/* Agrupa logo + mascote para evitar corte e manter proporção */
+.logoGroup {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+
+.titulo {
+  font-size: 32px;
+  font-weight: 500;
+  text-align: center;
+  padding: 12px;
+}
+
+.texto{
+    font-size: 16px;
+    font-weight: 400;
+    text-align: center;
+    padding: 10px;
+}
+.button-primary{
+  border: none;
+  border-radius: 10px;
+  background: var(--primary, #3b3355);
+  color: #fff;
+  font-family: Inter;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 140%; /* 22.4px */
+  width: 100%;
+  height: 52px;
+  padding: 5px 12px;
+}
+
+#link {
+    text-decoration: none;
+    color: white;
+}

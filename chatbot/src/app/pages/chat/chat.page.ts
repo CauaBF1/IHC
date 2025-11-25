@@ -26,6 +26,16 @@ export class ChatPage implements AfterViewInit {
   constructor(private chat: ChatService) { }
 
   async ngAfterViewInit() {
+    // Testa conectividade primeiro
+    console.log('[Chat] Testando conectividade...');
+    const isConnected = await this.chat.testConnection();
+    if (!isConnected) {
+      this.messages.push({ 
+        text: 'Aviso: Não foi possível conectar ao backend. Verifique se o servidor está rodando.', 
+        sender: 'bot' 
+      });
+    }
+
     // Carrega histórico do usuário
     try {
       const history = await this.chat.getChatHistory(this.chatType);
@@ -73,11 +83,14 @@ export class ChatPage implements AfterViewInit {
       this.messages.push({ text: reply, sender: 'bot' });
       this.scrollToBottom();
 
-    } catch (err) {
+    } catch (err: any) {
       this.isTyping = false;
-      this.messages.push({ text: 'Erro: não foi possível obter resposta', sender: 'bot' });
+      console.error('[Chat] Erro completo:', err);
+      
+      // Extrai mensagem específica do erro se disponível
+      const errorMsg = err?.message || 'Erro: não foi possível obter resposta';
+      this.messages.push({ text: errorMsg, sender: 'bot' });
       this.scrollToBottom();
-
     }
 
   }

@@ -1,0 +1,153 @@
+
+.tituloAvatar{
+    text-align: center;
+}
+
+.profile-wrapper {
+    text-align: center;
+}
+
+.profile-circle {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    border: 2px solid #333;
+    overflow: hidden;
+    position: relative;
+    margin: 0 auto; /* centraliza */
+    background-color: transparent
+}
+
+.profile-circle img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* imagem preenche o círculo sem distorcer */
+}
+
+
+
+#imagemAvatar{
+  float: center;
+}
+
+select, input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    font-size: 16px;
+    background-color: transparent;
+}
+
+.termos-container {
+  display: flex;
+  align-items: center;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  color: #333;
+  cursor: pointer;
+  gap: 8px; /* espaço entre o checkbox e o texto */
+}
+
+/* Remove estilo padrão do checkbox (opcional) */
+.termos-container input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+
+.termos-container a {
+  color: #9a84b8; /* cor semelhante à da imagem */
+  text-decoration: underline;
+}
+
+.termos-container a:hover {
+  opacity: 0.7;
+}
+
+
+.profile-wrapper {
+    position: relative;
+    width: fit-content;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.profile-circle {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    border: 2px solid #333;
+    overflow: hidden;
+}
+
+.profile-circle img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.edit-icon {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background: transparent;
+    border-radius: 50%;
+    padding: 6px;
+    font-size: 18px;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    z-index: 9999;   /* agora funciona */
+}
+
+#botaoCadastro{
+  width: 100%;
+    padding: 14px 0;
+    background-color: #3D355C; /* roxo escuro */
+    color: white;
+    border: none;
+    border-radius: 14px;
+    font-size: 18px;
+    cursor: pointer;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+}
+
+
+.btn-voltar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: none;
+    background-color: #C8A6C8; /* lilás claro */
+    font-size: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #2E2B32; /* seta escura */
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+}
+
+.circle-btn {
+  width: 70px;
+  height: 70px;
+  background-color: #a986b5; /* lilás */
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 32px;
+  font-weight: bold;
+  color: #1a1a1a;
+
+  position: fixed;
+  bottom: 20px; /* distância do fundo */
+  left: 20px;  /* AGORA fica à esquerda */
+
+  transition: transform 0.2s ease;
+}

@@ -31,8 +31,35 @@ if (!GEMINI_API_KEY) {
 
 // Configuração da Google Generative AI
 const genAI = new GoogleGenerativeAI(GEMINI_API_KEY);
-// Escolha o modelo que deseja usar.
-const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash-preview-05-20" });
+// Modelos: use versões específicas válidas da API
+const MODEL_PRIMARY = "gemini-2.5-flash"; // modelo estável atual
+const MODEL_FALLBACKS = ["gemini-2.5-pro", "gemini-2.0-flash"]; // fallbacks estáveis
+function getModel(name) {
+  return genAI.getGenerativeModel({ model: name });
+}
+
+async function tryGenerateWithModels(prompt) {
+  const tried = [];
+  const models = [MODEL_PRIMARY, ...MODEL_FALLBACKS];
+  for (const m of models) {
+    const startedAt = Date.now();
+    try {
+      const model = getModel(m);
+      const result = await model.generateContent(prompt);
+      const response = await result.response;
+      const reply = response?.text?.() || "";
+      const durationMs = Date.now() - startedAt;
+      if (reply && reply.trim().length > 0) {
+        return { reply, model: m, durationMs, tried };
+      }
+      tried.push({ model: m, ok: false, reason: "Resposta vazia" });
+    } catch (err) {
+      tried.push({ model: m, ok: false, reason: err?.message || String(err) });
+      // continua para próximo modelo
+    }
+  }
+  return { reply: null, model: null, tried };
+}
 
 
 const PORT = process.env.PORT || 3000; // Usando 3001 como padrão se PORT não estiver no .env
@@ -43,17 +70,15 @@ app.post('/chat', async (req, res) => {
   if (!message) {
     return res.status(400).json({ error: 'A mensagem é obrigatória no corpo da requisição.' });
   }
-
+  const startedAt = Date.now();
   try {
-
     // --- 1. Buscar histórico do usuário ---
     const history = db
       .prepare(`SELECT message, response FROM chat_history WHERE user_id = ? AND chat_type = ? ORDER BY id DESC LIMIT 5`)
       .all(userId, chatType);
-    //console.log("historico de conversas: ", history);
     const historyText = history
       .map(h => `Usuário: ${h.message}\nAssistente: ${h.response}`)
-      .reverse() // para mostrar do mais antigo para o mais recente
+      .reverse()
       .join('\n');
 
     // --- 2. Definir estilo de conversa ---
@@ -64,19 +89,30 @@ app.post('/chat', async (req, res) => {
     };
     const stylePrompt = chatStyles[chatType] || "Seja prestativo e educado.";
 
-    // --- 3. Montar prompt para Gemini ---
-    const prompt = `${stylePrompt} Histórico recente: ${historyText || '(Sem histórico anterior)'} Usuário: "${message}"`;
-    // Chamada à API Gemini usando a biblioteca oficial
-    const result = await model.generateContent(prompt);
-    const response = await result.response;
-    const reply = response.text(); // O método .text() extrai o texto da resposta
-    // Chame esta função ao iniciar o servidor para depuração
-    //listAvailableModels();
+    // --- 3. Montar prompt ---
+    const prompt = `${stylePrompt}\n\nHistórico recente:\n${historyText || '(Sem histórico anterior)'}\n\nUsuário: "${message}"`;
 
-    res.json({ reply });
+    console.log('[CHAT] promptChars=', prompt.length, 'historyMsgs=', history.length, 'chatType=', chatType);
+
+    // --- 4. Tentar geração com fallback de modelos ---
+    const genResult = await tryGenerateWithModels(prompt);
+    if (!genResult.reply) {
+      console.error('[CHAT] Falha em todos os modelos. Tentativas:', genResult.tried);
+      return res.status(502).json({
+        error: 'Falha ao gerar resposta',
+        details: genResult.tried,
+        message: 'Nenhum modelo retornou conteúdo.',
+      });
+    }
+
+    console.log('[CHAT] Sucesso modelo=', genResult.model, 'ms=', genResult.durationMs);
+    res.json({ reply: genResult.reply, model: genResult.model, durationMs: genResult.durationMs });
   } catch (err) {
-    console.error('Erro ao chamar Gemini:', err); // A biblioteca lida com erros de forma mais direta
-    res.status(500).json({ error: 'Erro ao chamar Gemini' });
+    console.error('Erro ao chamar Gemini:', err?.stack || err);
+    res.status(500).json({ error: 'Erro ao chamar Gemini', detail: err?.message || String(err) });
+  } finally {
+    const totalMs = Date.now() - startedAt;
+    console.log('[CHAT] totalDurationMs=', totalMs);
   }
 });
 
@@ -175,51 +211,45 @@ app.get('/get-history/:userId/:chatType', (req, res) => {
 //Chat temporário
 app.post('/chat-temp', async (req, res) => {
   const { sessionId, message, chatType } = req.body;
-  // console.log("Dados de entrada: ", sessionId, message, chatType);
   if (!sessionId || !message || !chatType) {
     return res.status(400).json({ error: 'Campos obrigatórios ausentes (sessionId, message, chatType).' });
   }
-
   try {
-    // --- 1. Buscar histórico temporário ---
-   // console.log("Buscando histórico temporário.......");
     const history = tempChatHistory[sessionId] || [];
     const historyText = history
       .map(h => `Usuário: ${h.message}\nAssistente: ${h.response}`)
       .reverse()
       .join('\n');
-
-    // --- 2. Estilo de conversa ---
     const chatStyles = {
       general: "Converse livremente com o usuário, de forma amigável.",
-      csv: "Ajude o usuário a entender e interpretar os dados enviados no CSV."
+      csv: "Ajude o usuário a entender e interpretar os dados enviados no CSV.",
+      sleep: "O usuário pode estar enfrentando alguma dificuldade para dormir."
     };
     const stylePrompt = chatStyles[chatType] || "Seja prestativo e educado.";
-
-    // --- 3. Prompt para o Gemini ---
-    const prompt = `
-      ${stylePrompt}
-
-      Histórico temporário:
-      ${historyText || '(Sem histórico anterior)'}
-
-      Usuário: "${message}"
-      `;
-
-    // --- 4. Chamada ao Gemini ---
-    const result = await model.generateContent(prompt);
-    const response = await result.response;
-    const reply = response.text();
-
-    // --- 5. Salvar histórico temporário ---
+    const prompt = `${stylePrompt}\n\nHistórico temporário:\n${historyText || '(Sem histórico anterior)'}\n\nUsuário: "${message}"`;
+    console.log('[CHAT-TEMP] promptChars=', prompt.length, 'historyMsgs=', history.length, 'chatType=', chatType);
+    const genResult = await tryGenerateWithModels(prompt);
+    if (!genResult.reply) {
+      console.error('[CHAT-TEMP] Falha modelos:', genResult.tried);
+      return res.status(502).json({ error: 'Falha ao gerar resposta temporária', details: genResult.tried });
+    }
     if (!tempChatHistory[sessionId]) tempChatHistory[sessionId] = [];
-    tempChatHistory[sessionId].push({ message, response: reply, chatType });
-
-    res.json({ reply });
+    tempChatHistory[sessionId].push({ message, response: genResult.reply, chatType });
+    res.json({ reply: genResult.reply, model: genResult.model });
   } catch (err) {
-    console.error('Erro no /chat-temp:', err);
-    res.status(500).json({ error: 'Erro ao processar a conversa temporária' });
+    console.error('Erro no /chat-temp:', err?.stack || err);
+    res.status(500).json({ error: 'Erro ao processar a conversa temporária', detail: err?.message || String(err) });
   }
+});
+
+// Health check simples para diagnosticar conectividade e modelos
+app.get('/health', (req, res) => {
+  res.json({
+    ok: true,
+    timestamp: new Date().toISOString(),
+    primaryModel: MODEL_PRIMARY,
+    fallbacks: MODEL_FALLBACKS,
+  });
 });
 
 // --- Salvar CSV processado no banco ---
@@ -290,6 +320,7 @@ app.post('/login', async (req, res) => {
    if (!username || !password) {
     return res.status(400).json({ error: 'Campos obrigatórios ausentes' });
   }
+  console.log(`login request body:`, req.body);
   console.log(`username and password: `, username, password)
   try {
     const users = db.prepare('SELECT * FROM user_profile').all();
@@ -300,15 +331,15 @@ app.post('/login', async (req, res) => {
     const user = stmt.get(username, password);
     // Verifica se o usuário existe e a senha confere
     if (!user || user.password !== password) {
-      console.log(`user.password e password: `, user.password, password)
+      console.log(`user.password e password: `, user?.password, password)
       return res.status(401).json({ success: false, message: 'Usuário ou senha incorretos' });
     }
 
     // Login OK
     res.json({ success: true, user_id: user.user_id, username: user.username, password: user.password });
   } catch (err) {
-    // Loga o erro no servidor e retorna 500
-    console.error('Erro no login:', err);
+    // Loga o erro no servidor e retorna 500 com stack para depuração
+    console.error('Erro no login:', err?.stack || err);
     res.status(500).json({ success: false, message: 'Erro ao realizar login.' });
   }
 });

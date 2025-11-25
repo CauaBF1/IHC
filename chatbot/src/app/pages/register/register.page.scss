@@ -1,9 +1,104 @@
-.link-container {
-  text-align: center;
-  margin-top: 1rem;
-  a {
-    color: var(--ion-color-primary);
-    font-weight: 500;
-    text-decoration: none;
-  }
+
+input{
+    background-color: transparent;
+}
+
+body{
+    background-color: #fff8f0;
+    font-family: "Inter", sans-serif;
+}
+
+.container {
+  width: 100%;
+  max-width: 420px; /* típico mobile */
+  margin: 0 auto;
+  padding: 16px;
+}
+
+#cabecalho {
+    float: right;
+    display: flex;
+    width: 100%;               /* agora ele pode alinhar à direita */
+    flex-direction: row-reverse;
+    justify-content: right; /* empurra para direita */
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+
+#estiloLogoCadastro {
+    width: 55px;
+}
+
+#estiloMascoteCadastro {
+    width: 35px;
+    transform: rotate(-30deg);
+}
+
+
+.formularioCadastro {
+    padding-top: 70px;
+    width: 90%;
+    max-width: 380px;
+    margin: 30px auto;
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    font-size: 16px;
+    font-weight: bold;
+    color: #1f1f1f;
+    margin-bottom: 4px;
+    margin-top: 14px;
+}
+
+input {
+    padding: 10px 12px;
+    border-radius: 10px;
+    border: 2px solid #c6b7cc;
+    font-size: 15px;
+    outline: none;
+}
+
+input::placeholder {
+    color: #b3b3b3;
+}
+
+#linkLogin{
+    color: black;
+}
+
+.circle-btn {
+  width: 70px;
+  height: 70px;
+  background-color: #a986b5; /* lilás */
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 32px;
+  font-weight: bold;
+  color: #1a1a1a;
+
+  position: fixed;
+  bottom: 20px; /* distância do fundo */
+  right: 20px;  /* distância da direita */
+
+  transition: transform 0.2s ease;
+
+}
+
+.circle-btn:active {
+  transform: scale(0.9);
+}
+
+#link {
+  color: black;
+  text-decoration: none;
 }

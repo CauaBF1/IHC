@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tela Mobile</title>
+
+    <link rel="stylesheet" href="../register/register.page.scss">
+    <link rel="stylesheet" href="register-step2.page.scss">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="container" style="margin-top: 50px;">
+
+        <div id="cabecalho">
+            <img id="estiloMascoteCadastro" src="assets/imgs/mascote.png">
+            <img id="estiloLogoCadastro" src="assets/imgs/logo.png">
+        </div>
+
+    <form (submit)="onFinish(); $event.preventDefault();">
+
+            <div class="profile-wrapper">
+                <h2>Personalize seu avatar:</h2>
+
+                <div class="profile-circle">
+                    <img id="imagemAvatar" src="assets/imgs/mascote2.png">
+                </div>
+
+                <div class="edit-icon">✏️</div>
+            </div>
+
+            <div class="formularioCadastro" style="margin-top: -20px;">
+
+                <label for="apelido">Como podemos te chamar:</label>
+                <input type="text" id="apelido" placeholder="Escreva seu apelido" required>
+
+                <label for="abordagem">Qual abordagem comunicativa deseja?</label>
+                <select id="abordagem" required>
+                    <option value="" disabled selected>Selecione uma opção</option>
+                    <option value="formal">Formal</option>
+                    <option value="informal">Informal</option>
+                </select>
+
+                <label for="pronome">Pronome</label>
+                <select id="pronome" required>
+                    <option value="unico">Você é único</option>
+                    <option value="unica">Você é única</option>
+                </select>
+
+                <label class="termos-container">
+                    <input type="checkbox" required />
+                    <span>
+                        Concordo com os
+                        <a href="#">Termos de Uso</a>
+                        e a
+                        <a href="#">Política de Privacidade</a>
+                    </span>
+                </label>
+
+                <br>
+
+                <button id="botaoCadastro" type="submit">Cadastrar</button>
+
+                <br>
+
+                <a href="telaCadastro.html" class="circle-btn2">⟵</a>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</body>
+
+</html>

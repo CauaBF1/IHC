@@ -1,37 +1,82 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-menu-button menu="main"></ion-menu-button>
-    </ion-buttons>
-    <ion-title>Chat</ion-title>
-    <ion-buttons slot="end">
-      <ion-button routerLink="/temporary-chat" fill="clear">
-        <ion-icon name="chatbubble-ellipses-outline" style="font-size: 22px;"></ion-icon>
-      </ion-button>
-    </ion-buttons>
-  </ion-toolbar>
-</ion-header>
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chat Mobile</title>
+    <link rel="stylesheet" href="chat.page.scss" />
+  </head>
 
+  <body>
+    <ion-header>
+      <ion-toolbar>
+        <ion-buttons slot="start">
+          <ion-menu-button menu="main"></ion-menu-button>
+        </ion-buttons>
+        <ion-title>Chat</ion-title>
+        <ion-buttons slot="end">
+          <img src="assets/imgs/mascote.png" class="avatar" alt="Avatar" />
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
 
-<ion-content class="ion-padding">
-  <div #chatContainer class="chat">
-    <div *ngFor="let m of messages" [ngClass]="['message', m.sender]">
-      <div class="bubble">
-        {{ m.text }}
+    <ion-content class="chat-area">
+      <div #chatContainer class="chat">
+        <div *ngFor="let m of messages" [ngClass]="['message', m.sender]">
+          <div class="bubble">
+            {{ m.text }}
+          </div>
+        </div>
+        <div *ngIf="isTyping" class="message bot">
+          <div class="bubble typing-bubble">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </div>
       </div>
-    </div>
-    <div *ngIf="isTyping" class="bubble bot typing-bubble">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
-  </div>
-</ion-content>
+    </ion-content>
 
-<ion-footer style="position: absolute; bottom: 0;">
-  <ion-item lines="none">
-    <ion-input [(ngModel)]="userMessage" placeholder="Digite sua mensagem" (keydown.enter)="sendMessage()">
-    </ion-input>
-    <ion-button (click)="sendMessage()">Enviar</ion-button>
-  </ion-item>
-</ion-footer>
+    <ion-footer class="input-area">
+      <div style="display: flex; gap: 8px; align-items: center; width: 100%; padding: 10px;">
+        <button class="icon">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="32"
+            height="32"
+            viewBox="0 0 32 32"
+            fill="none"
+          >
+            <path
+              d="M15.3333 29.3333C13.2889 29.3333 11.5556 28.6222 10.1333 27.2C8.71111 25.7778 8 24.0444 8 22V7.99999C8 6.53332 8.52222 5.27777 9.56667 4.23332C10.6111 3.18888 11.8667 2.66666 13.3333 2.66666C14.8 2.66666 16.0556 3.18888 17.1 4.23332C18.1444 5.27777 18.6667 6.53332 18.6667 7.99999V20.6667C18.6667 21.6 18.3444 22.3889 17.7 23.0333C17.0556 23.6778 16.2667 24 15.3333 24C14.4 24 13.6111 23.6778 12.9667 23.0333C12.3222 22.3889 12 21.6 12 20.6667V7.99999H14V20.6667C14 21.0444 14.1278 21.3611 14.3833 21.6167C14.6389 21.8722 14.9556 22 15.3333 22C15.7111 22 16.0278 21.8722 16.2833 21.6167C16.5389 21.3611 16.6667 21.0444 16.6667 20.6667V7.99999C16.6667 7.06666 16.3444 6.27777 15.7 5.63332C15.0556 4.98888 14.2667 4.66666 13.3333 4.66666C12.4 4.66666 11.6111 4.98888 10.9667 5.63332C10.3222 6.27777 10 7.06666 10 7.99999V22C10 23.4667 10.5222 24.7222 11.5667 25.7667C12.6111 26.8111 13.8667 27.3333 15.3333 27.3333C16.8 27.3333 18.0556 26.8111 19.1 25.7667C20.1444 24.7222 20.6667 23.4667 20.6667 22V7.99999H22.6667V22C22.6667 24.0444 21.9556 25.7778 20.5333 27.2C19.1111 28.6222 17.3778 29.3333 15.3333 29.3333Z"
+              fill="#1D1B20"
+            />
+          </svg>
+        </button>
+        <input 
+          type="text" 
+          [(ngModel)]="userMessage" 
+          (keydown.enter)="sendMessage()" 
+          placeholder="Comece a escrever aqui" 
+          class="input-field"
+        />
+        <button class="send" (click)="sendMessage()">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="32"
+            height="32"
+            viewBox="0 0 32 32"
+            fill="none"
+          >
+            <path
+              d="M4 26.6667V5.33334L29.3333 16L4 26.6667ZM6.66667 22.6667L22.4667 16L6.66667 9.33334V14L14.6667 16L6.66667 18V22.6667ZM6.66667 22.6667V16V9.33334V14V18V22.6667Z"
+              fill="#000505"
+            />
+          </svg>
+        </button>
+      </div>
+    </ion-footer>
+  </body>
+</html>
+
+

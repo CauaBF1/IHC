@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Esqueceu senha</title>
+    <link rel="stylesheet" href="esqueci-senha.page.scss" />
+  </head>
+  <body>
+    <div class="container">
+      <br />
+      <br />
+
+      <div id="cabecalho">
+        <ion-menu-button menu="main"></ion-menu-button>
+        <div class="logoGroup">
+          <img id="estiloLogoCadastro" src="assets/imgs/logo.png" />
+          <img id="estiloMascoteCadastro" src="assets/imgs/mascote.png" />
+        </div>
+      </div>
+
+      <div>
+        <h1 class="titulo">Esqueceu a senha?</h1>
+        <h2 class="texto">
+          Para redefinir sua senha, informe seu email cadastrado na sua conta e
+          lhe enviaremos um link com as instruções.
+        </h2>
+      </div>
+      <form>
+          <div class="formularioRedefinirSenha">
+            <label for="email">Email institucional:</label>
+            <br />
+            <input
+              type="email"
+              id="email"
+              placeholder="email@dominio.com"
+              required
+            />
+          </div>
+
+          <button type="submit" class="button-primary">
+            <a id="link" href="/checkinDiario">Iniciar</a>
+          </button>
+          <a id="linkCancelar" href="/login">Cancelar</a>
+        </form>
+    </div>
+  </body>
+</html>

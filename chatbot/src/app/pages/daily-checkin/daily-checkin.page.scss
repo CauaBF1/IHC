@@ -1,0 +1,77 @@
+
+.humor-container {
+    text-align: center;
+    width: 100%;
+    max-width: 420px;
+    margin: auto;
+    padding: 20px 0;
+}
+
+.humor-container h2 {
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 25px;
+}
+
+/* GRID */
+.humor-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 4px;
+    margin: 25px;
+}
+
+/* Esconde o checkbox */
+.humor-option input[type="checkbox"] {
+    display: none;
+     padding: 8px 16px;
+}
+
+/* Estilo do botão */
+.humor-option {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.humor-option span {
+    background: #b18bbd; /* lilás padrão */
+    color: white;
+    padding: 14px 0;
+    font-size: 16px;
+    font-weight: 500;
+    border-radius: 10px;
+    width: 100%;
+    transition: 0.2s ease;
+}
+
+/* Alternância de cores como no protótipo */
+.humor-option:nth-child(3n+1) span { background: #b18bbd; } /* Lilás */
+.humor-option:nth-child(3n+2) span { background: #4f3d64; } /* Roxo escuro */
+.humor-option:nth-child(3n+3) span { background: #000; }     /* Preto */
+
+/* Quando marcado → muda cor */
+.humor-option input:checked + span {
+    background: #7cc4ff; /* azul claro para mostrar seleção */
+    color: #000;
+    transform: scale(1.05);
+    font-weight: 600;
+}
+.botaoCadastro{
+  width: 90%;
+    padding: 14px 0;
+    background-color: #3D355C; /* roxo escuro */
+    color: white;
+    border: none;
+    border-radius: 14px;
+    font-size: 18px;
+    cursor: pointer;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+    margin: 0px 2.5px;
+}
+
+#linkB{
+  color: white;
+  text-decoration: none;
+}

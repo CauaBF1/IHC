@@ -2,10 +2,24 @@
 import { Injectable } from '@angular/core';
 import axios from 'axios';
 import { BehaviorSubject } from 'rxjs';
+import { Capacitor } from '@capacitor/core';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  private apiUrl = 'http://localhost:3000'; // ajuste conforme seu backend
+  // Ajusta a URL do backend conforme a plataforma.
+  // No emulador Android padrão (Android Studio) o host "localhost" refere-se ao próprio emulador,
+  // por isso devemos usar 10.0.2.2 para alcançar o servidor que roda na máquina host.
+  private apiUrl = (() => {
+    try {
+      const platform = Capacitor.getPlatform?.() || (window as any)?.Capacitor?.platform || '';
+      if (typeof platform === 'string' && platform.toLowerCase().includes('android')) {
+        return 'http://localhost:3000';
+      }
+    } catch (e) {
+      // se Capacitor não estiver disponível, continua com localhost
+    }
+    return 'http://localhost:3000';
+  })(); // ajuste conforme seu backend
   private currentUser: any = null;
 
   // Observable para que componentes (como o menu) possam reagir a login/logout

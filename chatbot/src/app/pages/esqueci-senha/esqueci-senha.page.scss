@@ -1,0 +1,119 @@
+body {
+  background-color: #fff8f0;
+  font-family: "Inter", sans-serif;
+}
+
+.container {
+  width: 100%;
+  max-width: 420px; /* típico mobile */
+  margin: 0 auto;
+  padding: 16px;
+}
+
+#cabecalho {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* botão à esquerda, logo + mascote à direita */
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+#menuButton {
+  background: none;
+  border: none;
+  font-size: 26px;
+  cursor: pointer;
+  padding: 6px 10px;
+}
+
+#estiloLogoCadastro {
+  width: 55px;
+}
+
+#estiloMascoteCadastro {
+  width: 35px;
+  transform: rotate(-30deg);
+}
+
+/* Agrupa logo + mascote para evitar corte e manter proporção */
+.logoGroup {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.titulo {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 140%; /* 44.8px */
+  text-align: center;
+}
+
+.texto {
+  font-size: 22px;
+  font-weight: 500;
+  text-align: center;
+  margin: 20px 0px;
+  padding: 13px;
+  line-height: 140%; /* 30.8px */
+}
+.button-primary {
+  border: none;
+  border-radius: 10px;
+  background: var(--primary, #3b3355);
+  color: #fff;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 140%; /* 22.4px */
+  width: 100%;
+  height: 52px;
+  padding: 5px 12px;
+  margin-bottom: 10px;
+  text-decoration: none;
+}
+
+input {
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 2px solid #c6b7cc;
+  font-size: 16px;
+  outline: none;
+  color: #afafaf;
+  font-weight: 500;
+  line-height: 140%; /* 22.4px */
+  background-color: transparent;
+  margin-bottom: 20px;
+}
+
+input::placeholder {
+  color: #b3b3b3;
+}
+
+label {
+  color: var(--text, #000505);
+  font-family: Inter;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 140%; /* 28px */
+}
+
+.formularioRedefinirSenha {
+  padding-top: 20px;
+  width: 100%;
+  margin: 30px auto;
+  display: flex;
+  flex-direction: column;
+}
+
+#linkCancelar {
+  color: #000505;
+  text-decoration: underline;
+}
+
+#link{
+  text-decoration: none;
+  color: white;
+}

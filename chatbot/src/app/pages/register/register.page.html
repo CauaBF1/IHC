@@ -1,42 +1,53 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-menu-button menu="main"></ion-menu-button>
-    </ion-buttons>
-    <ion-title>Register</ion-title>
-    <ion-buttons slot="end">
-      <ion-button routerLink="/temporary-chat" fill="clear">
-        <ion-icon name="chatbubble-ellipses-outline" style="font-size: 22px;"></ion-icon>
-      </ion-button>
-    </ion-buttons>
-  </ion-toolbar>
-</ion-header>
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tela Mobile</title>
+    <link rel="stylesheet" href="register.page.scss">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
 
-<ion-content class="ion-padding">
+<div class="container">
+    <br><br>
 
-  <form (ngSubmit)="onRegister()" [formGroup]="form">
-    <ion-item>
-      <ion-label position="floating">Usuário</ion-label>
-      <ion-input type="text" formControlName="username"></ion-input>
-    </ion-item>
-
-    <ion-item>
-      <ion-label position="floating">Senha</ion-label>
-      <ion-input type="password" formControlName="password"></ion-input>
-    </ion-item>
-
-    <ion-item>
-      <ion-label position="floating">Confirmar senha</ion-label>
-      <ion-input type="password" formControlName="confirmPassword"></ion-input>
-    </ion-item>
-
-    <ion-button expand="block" type="submit" [disabled]="form.invalid || loading">
-      {{ loading ? 'Criando conta...' : 'Cadastrar' }}
-    </ion-button>
-
-    <div class="link-container">
-      <a (click)="goToLogin()">Já tenho uma conta</a>
+    <div id="cabecalho">
+        <img id="estiloMascoteCadastro" src="assets/imgs/mascote.png">
+        <img id="estiloLogoCadastro" src="assets/imgs/logo.png">
     </div>
-  </form>
 
-</ion-content>
+    <form action="telaCadastro2.html">
+
+        <div class="formularioCadastro">
+
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" placeholder="Escreva seu nome" required>
+
+            <label for="email">Email institucional:</label>
+            <input type="email" id="email" placeholder="email@dominio.com" required>
+
+            <label for="data">Data de nascimento:</label>
+            <input type="date" id="data" required>
+
+            <label for="senha">Senha:</label>
+            <input type="password" id="senha" placeholder="****************" required>
+
+            <br><br><br>
+
+            <a id="linkLogin" href="/login">Já possuo cadastro</a>
+
+            <!-- <button type="submit" class="circle-btn">➜</button> -->
+            
+            <button type="submit" class="circle-btn">
+                <a id="link" href="/register-step2">➜</a>
+            </button>
+
+        </div>
+        
+    </form>
+
+</div>
+
+</body>
+</html>

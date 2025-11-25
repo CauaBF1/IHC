@@ -9,7 +9,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'login',
     pathMatch: 'full'
   },
   {
@@ -21,6 +21,10 @@ const routes: Routes = [
     loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
   },
   {
+    path: 'esqueci-senha',
+    loadChildren: () => import('./pages/esqueci-senha/esqueci-senha.module').then( m => m.EsqueciSenhaPageModule)
+  },
+  {
     path: 'chat',
     loadChildren: () => import('./pages/chat/chat.module').then( m => m.ChatPageModule),
     canActivate: [AuthGuard],
@@ -29,6 +33,18 @@ const routes: Routes = [
   {
     path: 'register',
     loadChildren: () => import('./pages/register/register.module').then( m => m.RegisterPageModule)
+  },
+  {
+    path: 'register-step2',
+    loadChildren: () => import('./pages/register-step2/register-step2.module').then( m => m.RegisterStep2PageModule)
+  },
+  {
+    path: 'tutorial',
+    loadChildren: () => import('./pages/tutorial/tutorial.module').then(m => m.TutorialPageModule)
+  },
+  {
+    path: 'daily-checkin',
+    loadChildren: () => import('./pages/daily-checkin/daily-checkin.module').then(m => m.DailyCheckinPageModule)
   },
   {
     path: 'breathing',
